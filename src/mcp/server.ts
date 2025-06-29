@@ -135,7 +135,7 @@ export function createMcpServer(): McpServer {
 
     // get repository path
     {
-      const commandArgs = ["list", "--exact", name];
+      const commandArgs = ["list", "--full-path", "--exact", name];
 
       const command = new Deno.Command("ghq", {
         args: commandArgs,
