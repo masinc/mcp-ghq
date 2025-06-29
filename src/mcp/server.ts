@@ -12,55 +12,6 @@ export function createMcpServer(): McpServer {
     version: "1.0.0",
   });
 
-  mcpServer.registerTool("list", {
-    title: "List Repositories",
-    description: "Lists all repository paths managed by ghq.",
-
-    annotations: {
-      readOnlyHint: true, // 外部の状態を変更しない
-    },
-
-    inputSchema: {
-      rootPath: z.string().optional().describe(
-        "Optional root path to list repositories from. If not provided, uses the default ghq root path.",
-      ),
-    },
-  }, async ({ rootPath }) => {
-    let env = {};
-    if (rootPath) {
-      env = { GHQ_ROOT: rootPath };
-    }
-
-    const command = new Deno.Command("ghq", {
-      args: ["list", "-p"],
-      stdout: "piped",
-      stderr: "piped",
-      env,
-    });
-
-    const { stdout, stderr } = await command.output();
-
-    if (stderr.length > 0) {
-      throw new Error(new TextDecoder().decode(stderr));
-    }
-
-    const repositories = new TextDecoder().decode(stdout)
-      .split("\n")
-      .filter((line) => line.trim() !== ""); // 空行を除外
-
-    const structuredContent = {
-      repositories,
-    };
-
-    return {
-      content: [{
-        type: "text",
-        text: JSON.stringify(structuredContent),
-      }],
-      structuredContent,
-    };
-  });
-
   mcpServer.registerTool("get", {
     title: "Get Repository",
     description: "Gets the path of a specific repository managed by ghq.",
