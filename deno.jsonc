@@ -1,8 +1,12 @@
 {
   "name": "@masinc/mcp-ghq",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "license": "MIT",
-  "exports": "./src/mod.ts",
+  "exports": {
+    ".": "./src/mod.ts",
+    "./mcp-ghq-stdio": "./src/bin/stdio.ts",
+    "./mcp-ghq-http": "./src/bin/http.ts"
+  },
   "bin": {
     "mcp-ghq-stdio": "./src/bin/stdio.ts",
     "mcp-ghq-http": "./src/bin/http.ts"
