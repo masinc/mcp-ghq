@@ -29,4 +29,4 @@ app.all("/mcp", async (c) => {
   return transport.handleRequest(c);
 });
 
-export default app satisfies Deno.ServeDefaultExport;
+export default (app satisfies Deno.ServeDefaultExport) as Deno.ServeDefaultExport;
