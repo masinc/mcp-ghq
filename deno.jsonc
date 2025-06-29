@@ -1,10 +1,17 @@
 {
+  "bin": {
+    "mcp-ghq-stdio": "./src/bin/stdio.ts",
+    "mcp-ghq-http": "./src/bin/http.ts"
+  },
   "tasks": {
-    "dev": "deno serve --watch --port 3000 src/main.ts",
-    "inspect": "npx @modelcontextprotocol/inspector \"http://localhost:3000/mcp\""
+    "run-http": "deno serve --allow-net --allow-run src/bin/http.ts",
+    "inspect-http": "npx @modelcontextprotocol/inspector \"http://localhost:8000/mcp\"",
+    "run-stdio": "deno run --allow-run src/bin/stdio.ts",
+    "inspect-stdio": "npx @modelcontextprotocol/inspector deno task run-stdio"
   },
   "imports": {
     "@hono/mcp": "npm:@hono/mcp@^0.1.0",
+    "@logtape/logtape": "jsr:@logtape/logtape@^1.0.0",
     "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.13.0",
     "@std/assert": "jsr:@std/assert@1",
     "hono": "npm:hono@^4.8.2",
