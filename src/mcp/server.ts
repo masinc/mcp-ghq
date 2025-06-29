@@ -8,23 +8,32 @@ const logger = getLogger("mcp-ghq");
 export function createMcpServer(): McpServer {
   const mcpServer = new McpServer({
     name: "mcp-ghq",
-    title: "MCP ghq cli Server",
+    title: "MCP ghq CLI Server",
     version: "1.0.0",
+    description:
+      `Model Context Protocol server for ghq - a remote repository management tool.
+Provides tools to clone and manage Git repositories using ghq.`,
   });
 
   mcpServer.registerTool("get", {
     title: "Get Repository",
-    description: "Gets the path of a specific repository managed by ghq.",
+    description:
+      `Clones a Git repository using ghq (if not already exists) and returns its local path. 
+This tool helps manage remote repositories in a structured way using ghq's directory layout.`,
 
     inputSchema: {
-      name: z.string().describe("Name/URL/ID of the repository"),
+      name: z.string().describe(
+        "Repository name, URL, or ID (e.g., 'owner/repo', 'https://github.com/owner/repo.git', 'github.com/owner/repo')",
+      ),
 
       shallow: z.boolean().default(true).describe(
-        "If true, performs a shallow clone of the repository.",
+        `If true, performs a shallow clone to save time and disk space.
+Set to false for a full clone with complete history.`,
       ),
 
       rootPath: z.string().optional().describe(
-        "Optional root path to get the repository from. If not provided, uses the default ghq root path.",
+        `Optional root path where repositories are stored. If not provided, uses the default ghq root path (usually ~/ghq).
+This option is useful for managing project-specific repositories separately from your global ghq collection.`,
       ),
     },
   }, async ({ name, shallow, rootPath }) => {
