@@ -18,12 +18,24 @@ Run the MCP server in STDIO mode (for use with MCP clients):
 deno run --allow-run jsr:@masinc/mcp-ghq/mcp-ghq-stdio
 ```
 
+To ensure you're running the latest version:
+
+```bash
+deno run --reload --allow-run jsr:@masinc/mcp-ghq/mcp-ghq-stdio
+```
+
 ### HTTP Mode
 
 Run the MCP server as an HTTP server:
 
 ```bash
 deno serve --allow-run jsr:@masinc/mcp-ghq/mcp-ghq-http
+```
+
+To ensure you're running the latest version:
+
+```bash
+deno serve --reload --allow-run jsr:@masinc/mcp-ghq/mcp-ghq-http
 ```
 
 The HTTP server will be available at `http://localhost:8000/mcp`.
