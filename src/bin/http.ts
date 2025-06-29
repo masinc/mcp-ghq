@@ -16,7 +16,7 @@ await configure({
   ],
 });
 
-const app = new Hono();
+const app: Hono = new Hono();
 
 app.get("/", (c) => {
   return c.text("Hello, MCP Server is available at /mcp");
