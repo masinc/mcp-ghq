@@ -5,7 +5,7 @@ import { getLogger } from "@logtape/logtape";
 const logger = getLogger("mcp-ghq");
 
 /** MCPサーバーを作成する関数 */
-export function createMcpServer() {
+export function createMcpServer(): McpServer {
   const mcpServer = new McpServer({
     name: "mcp-ghq",
     title: "MCP ghq cli Server",
