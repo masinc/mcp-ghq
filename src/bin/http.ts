@@ -1,7 +1,8 @@
 import { StreamableHTTPTransport } from "@hono/mcp";
 import { Hono } from "hono";
 import { createMcpServer } from "../mcp/server.ts";
-import { configure, getConsoleSink } from "@logtape/logtape";
+import { configure, getConsoleSink, getLogger } from "@logtape/logtape";
+import denoConfig from "../../deno.json" with { type: "json" };
 
 await configure({
   sinks: {
@@ -15,6 +16,9 @@ await configure({
     },
   ],
 });
+
+const logger = getLogger("mcp-ghq");
+logger.info(`mcp-ghq v${denoConfig.version} (HTTP mode)`);
 
 const app: Hono = new Hono();
 

@@ -1,6 +1,6 @@
 {
   "name": "@masinc/mcp-ghq",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "exports": {
     ".": "./src/mod.ts",
@@ -12,7 +12,7 @@
     "mcp-ghq-http": "./src/bin/http.ts"
   },
   "tasks": {
-    "run-http": "deno serve --allow-net --allow-run src/bin/http.ts",
+    "run-http": "deno serve --allow-run src/bin/http.ts",
     "inspect-http": "npx @modelcontextprotocol/inspector \"http://localhost:8000/mcp\"",
     "run-stdio": "deno run --allow-run src/bin/stdio.ts",
     "inspect-stdio": "npx @modelcontextprotocol/inspector deno task run-stdio"

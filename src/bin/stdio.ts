@@ -1,6 +1,7 @@
 import { createMcpServer } from "../mcp/server.ts";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { configure, getStreamSink } from "@logtape/logtape";
+import { configure, getLogger, getStreamSink } from "@logtape/logtape";
+import denoConfig from "../../deno.json" with { type: "json" };
 
 await configure({
   sinks: {
@@ -14,6 +15,9 @@ await configure({
     },
   ],
 });
+
+const logger = getLogger("mcp-ghq");
+logger.info(`mcp-ghq v${denoConfig.version} (STDIO mode)`);
 
 const mcpServer = createMcpServer();
 const transport = new StdioServerTransport();

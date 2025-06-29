@@ -23,10 +23,20 @@ deno run --allow-run jsr:@masinc/mcp-ghq/mcp-ghq-stdio
 Run the MCP server as an HTTP server:
 
 ```bash
-deno run --allow-net --allow-run jsr:@masinc/mcp-ghq/mcp-ghq-http
+deno serve --allow-run jsr:@masinc/mcp-ghq/mcp-ghq-http
 ```
 
 The HTTP server will be available at `http://localhost:8000/mcp`.
+
+You can specify host and port:
+
+```bash
+# Custom port
+deno serve --port 3000 --allow-run jsr:@masinc/mcp-ghq/mcp-ghq-http
+
+# Custom host and port
+deno serve --host 0.0.0.0 --port 3000 --allow-run jsr:@masinc/mcp-ghq/mcp-ghq-http
+```
 
 ## MCP Tools
 
